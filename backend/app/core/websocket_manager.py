@@ -25,7 +25,7 @@ class WebSocketManager:
             "timestamp": datetime.utcnow().isoformat() + "Z",
         })
         dead = set()
-        for ws in self.connections:
+        for ws in set(self.connections):
             try:
                 await ws.send_text(message)
             except Exception:

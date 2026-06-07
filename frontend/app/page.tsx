@@ -30,9 +30,26 @@ export default function CommandCenterPage() {
 
   useEffect(() => setMounted(true), [])
 
+  const AGENT_LINES: Record<string, string> = {
+    BIG_HOMIE: "What's up Rob — BIG HOMIE is online.",
+    PLUG:      "PLUG here. Scanning for partnership opportunities.",
+    HUNTER:    "HUNTER online. I'm on the hunt — leads incoming.",
+    CLOSER:    "CLOSER ready. Let's get that deal locked in.",
+    SAUCE:     "SAUCE activated. Creative strategy is flowing.",
+    CUTTY:     "CUTTY in the building. Content's looking clean.",
+    HUSTLE:    "HUSTLE online. Ads are running, growth is moving.",
+    LOOKOUT:   "LOOKOUT active. Market intel is updated.",
+    GEAR:      "GEAR online. Systems are running smooth.",
+    OG:        "OG here. Operations are tight, compliance is clear.",
+    BAGMAN:    "BAGMAN active. The numbers are looking good.",
+    RILEY:     "Riley here. Content calendar is locked and loaded.",
+  }
+
   const handleAgentClick = (agentId: string) => {
     setActiveAgentId(agentId === activeAgentId ? null : agentId)
     cc.actions.activateAgent(agentId)
+    const line = AGENT_LINES[agentId]
+    if (line) cc.actions.speakText(line, agentId)
   }
 
   if (!mounted) return <BootScreen />

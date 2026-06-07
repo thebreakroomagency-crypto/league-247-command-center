@@ -101,7 +101,7 @@ export function VoiceAssistant({ onCommand, onLogEvent }: VoiceAssistantProps) {
       const ttsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/voice/speak`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: reply }),
+        body: JSON.stringify({ text: reply, agent_id: 'BIG_HOMIE' }),
       })
       if (ttsRes.ok) {
         const audioBlob = await ttsRes.blob()

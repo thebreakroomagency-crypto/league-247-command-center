@@ -45,12 +45,12 @@ export function useCommandCenter() {
     }
   }, [agents, addLog])
 
-  const speakText = useCallback(async (text: string) => {
+  const speakText = useCallback(async (text: string, agentId?: string) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/voice/speak`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, agent_id: agentId ?? 'BIG_HOMIE' }),
       })
       if (!res.ok) return
       const blob = await res.blob()
@@ -270,6 +270,7 @@ export function useCommandCenter() {
       activateAgent,
       addLog,
       handleWebSocketEvent,
+      speakText,
     },
   }
 }

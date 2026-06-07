@@ -9,7 +9,8 @@ def get_client() -> Client:
     global _client
     if _client is None:
         from ..core.config import settings
-        _client = create_client(settings.SUPABASE_URL, settings.SUPABASE_SERVICE_KEY)
+        key = settings.SUPABASE_SERVICE_KEY or settings.SUPABASE_ANON_KEY
+        _client = create_client(settings.SUPABASE_URL, key)
     return _client
 
 
