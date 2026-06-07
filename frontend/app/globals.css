@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   LEAGUE 247 COMMAND CENTER — GLOBAL STYLES
+   ============================================================ */
+
+:root {
+  --cmd-orange: #ff6b00;
+  --cmd-red: #ff2200;
+  --cmd-cyan: #00d4ff;
+  --cmd-green: #00ff88;
+  --cmd-yellow: #ffd700;
+  --cmd-purple: #8b5cf6;
+  --cmd-bg: #050508;
+  --cmd-panel: #0c0c14;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--cmd-bg);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.3);
+  border-radius: 2px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.6);
+}
+
+/* ============================================================
+   GLASSMORPHISM PANEL
+   ============================================================ */
+.panel-glass {
+  background: rgba(12, 12, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 107, 0, 0.15);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,107,0,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   GRID BACKGROUND
+   ============================================================ */
+.cmd-grid-bg {
+  background-color: var(--cmd-bg);
+  background-image:
+    linear-gradient(rgba(255,107,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,107,0,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ============================================================
+   DATA STREAM ANIMATION
+   ============================================================ */
+.data-stream-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.data-stream {
+  position: absolute;
+  top: -20%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255,107,0,0.2), transparent);
+  animation: dataStream linear infinite;
+}
+
+@keyframes dataStream {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(200vh); opacity: 0; }
+}
+
+/* ============================================================
+   AGENT STATUS COLORS
+   ============================================================ */
+.status-active    { color: var(--cmd-green); }
+.status-processing { color: var(--cmd-orange); }
+.status-idle      { color: var(--cmd-yellow); }
+.status-offline   { color: #64748b; }
+.status-briefing  { color: var(--cmd-cyan); }
+
+/* ============================================================
+   RECHARTS DARK THEME
+   ============================================================ */
+.recharts-text { fill: #475569 !important; font-family: 'JetBrains Mono', monospace; }
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255,107,0,0.06) !important;
+}
+
+/* ============================================================
+   HOVER GLOW
+   ============================================================ */
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+}
+
+/* ============================================================
+   SCAN LINE EFFECT
+   ============================================================ */
+.scan-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,107,0,0.4), transparent);
+  animation: scanLine 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanLine {
+  0%   { top: 0%; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
